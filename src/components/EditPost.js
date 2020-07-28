@@ -4,23 +4,16 @@ import { connect } from 'react-redux';
 import {editPost}from '../actions/postsActions'
 
 class EditPost extends Component {
-
     onSubmit = (post) => {
         this.props.editPost(this.props.posts.items.id , post);
-        this.props.history.push("/");
+        //this.props.history.push("/");
     
         console.log("Updated !!", post);
       };
-
     render() {
         return (
             <div>
-                {
-                    console.log(this.props.post)
-                }
                 <PostsForm post={this.props.post} onSubmit={this.onSubmit} />
-                
-                
             </div>
         )
     }
@@ -28,12 +21,12 @@ class EditPost extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-      post: state.posts.items.find(
-        (p) => p.id === props.match.params.id
+      post: state.posts.find(
+        (post) => post.id === props.match.params.id
       ),
     };
   };
-  
+
   const mapDispatchToProps = (dispatch, props) => {
     return {
       editPost: (id, post) => dispatch(editPost(id, post))

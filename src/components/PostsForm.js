@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { createPost } from '../actions/postsActions'
-import PropTypes from 'prop-types'
 
+// import PropTypes from 'prop-types'
 
-class PostsForm extends Component {
+export default class PostsForm extends Component {
 
     constructor(props){
         super(props)
 
         this.state={
-            title: props.posts ? props.posts.map( (p) => p.title ) : '',
+            title: props.post ? props.post.title : '',
             body: props.posts ? props.posts.map( (p) => p.body ) : ''
         }
     }
@@ -35,8 +33,11 @@ class PostsForm extends Component {
             body: this.state.body
         }
 
-        this.props.createPost(post)
-        //this.props.history.push('/')
+        this.props.onSubmit(post)
+        console.log(post)
+        
+        
+
         
     }
 
@@ -50,7 +51,7 @@ class PostsForm extends Component {
                        <input 
                             className="title" 
                             type="text" 
-                            name="title" 
+                            
                             value={this.state.title} 
                             onChange={this.onTitleChange}
                        />
@@ -73,14 +74,14 @@ class PostsForm extends Component {
 
 
 
-PostsForm.propTypes = {
-    createPost: PropTypes.func.isRequired
-}
+// PostsForm.propTypes = {
+//     createPost: PropTypes.func.isRequired
+// }
 
-const mapStateToProps = state => ({
-    posts: state.posts.items
-})
+// const mapStateToProps = state => ({
+//     posts: state.posts
+// })
 
 
 
-export default connect(mapStateToProps,{createPost})(PostsForm)
+// export default connect(mapStateToProps,mapDispatchToProps)(PostsForm)

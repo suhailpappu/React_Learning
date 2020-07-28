@@ -58,8 +58,7 @@ Posts.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts.items,
-    newPost: state.posts.item
+    posts: state.posts
 })
 
 const mapDispatchToProps = (dispatch, props) => {
